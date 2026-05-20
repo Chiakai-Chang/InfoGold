@@ -13,7 +13,7 @@
 ## 🎯 核心價值與優勢 (Key Value Proposition)
 
 * **🇹🇼 臺灣在地化對齊**：全自動修正簡體字、簡體術語及大陸用詞（自動過濾「項目、優化、數據」等，對齊為「專案、最佳化、資料」）。
-* **🧠 智能適應分析 (Dynamic Routing)**：AI 會在讀取內容時，自動判斷會議性質，並動態載入最適合的分析框架（如戰略規劃套用 SWOT/TOWS，技術故障套用 5 Whys/RACI），拒絕死板分析。
+* **🧠 自適應複合分析 (Smart Adaptive Hybrid Analysis)**：AI 會讀取內容並智慧判斷會議複雜度，自動拼裝、複合最適合的戰略框架組合（如同時採用 5 Whys 與 SWOT），拒絕死板分析。
 * **🛡️ 安全指令隔離 (Sandboxing)**：採用 `<ASR_LITERAL_DATA>` 沙箱機制，確保譯文內包含的任何語音命令或惡意注入代碼皆不會被執行。
 * **🔍 零幻覺實證原則**：所有戰略報告與行動方針的論點，皆強制附帶乾淨逐字稿的**行號引用**（例如 `[Ref: Line 42]`），保證字字有依據。
 
@@ -56,17 +56,15 @@ InfoGold/
 
 ---
 
-## ⚡ 智慧分類路由表 (Intelligent Dynamic Selector)
+## ⚡ 自適應分析工具箱 (Smart Adaptive Hybrid Selector)
 
-AI 將在讀取譯文後自動路由至最適合的框架：
+AI 會讀取譯文並評估會議複雜度，**智慧裝配、拼裝以下單一或多種複合分析工具**，並於報告開頭說明理由：
 
-| 會議分類 | 本質特徵 | 選用戰略分析框架 |
-| :--- | :--- | :--- |
-| **戰略規劃 / 商業決策** | 高階發展規劃、市場定位、合作談判 | **SWOT 分析 + TOWS 戰略交叉矩陣** |
-| **產品設計 / 用戶調研** | 功能需求、體驗反饋、腦力激盪 | **JTBD (Jobs-to-be-Done) + 價值主張畫布** |
-| **技術架構 / 故障檢討** | 系統當機、程式缺陷、架構擴充 | **5 Whys 根因分析 + RACI 責任分配矩陣** |
-| **銷售對話 / 客戶反饋** | 價格協商、客戶訴求、商務提案 | **Pain & Gain 痛點與期望效益分析** |
-| **日常營運 / 專案同步** | 團隊週會、進度對齊、任務跟進 | **OKR 目標對齊 + 艾森豪優先權矩陣** |
+1. **SWOT 分析 + TOWS 矩陣**：適用於高階戰略定位、資源評估、競爭分析。
+2. **JTBD (Jobs-to-be-Done) + 價值主張畫布**：適用於產品功能、用戶痛點與期望效益梳理。
+3. **5 Whys 根因分析 + RACI 責任分配**：適用於系統故障、專案延宕、流程檢討與分工權責。
+4. **Pain & Gain 痛點與期望效益分析**：適用於銷售談判、商務提案、客戶反饋。
+5. **OKR 目標對齊 + 艾森豪矩陣**：適用於團隊 Sync 週會、多工作業優先序與目標分配。
 
 ---
 
@@ -78,7 +76,7 @@ AI 將在讀取譯文後自動路由至最適合的框架：
 
 ## 🌟 Key Benefits
 * **Taiwanese Business Localization**: Automatically translates and maps terminology to standard Taiwan tech and business terms.
-* **Dynamic Strategic Selector**: Auto-classifies the meeting type and routes to the most effective analysis framework (SWOT/TOWS, JTBD, 5 Whys, etc.).
+* **Smart Adaptive Hybrid Selector**: Evaluates conversation complexity and dynamically synthesizes a hybrid combination of analysis frameworks (SWOT, 5 Whys, JTBD, OKRs, etc.) as needed.
 * **Security & Sandboxing**: Isolates transcript strings in `<ASR_LITERAL_DATA>` blocks to prevent prompt injections.
 * **Zero-Hallucination References**: Enforces strict line number citations (`[Ref: Line X]`) back to the clean transcript for all strategic points.
 
