@@ -3,3 +3,5 @@ test/*
 !test/.gitkeep
 output/*
 !output/.gitkeep
+.agent_manifest.md
+
