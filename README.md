@@ -1,4 +1,4 @@
-# InfoGold - 經歷提煉與知識資產增值系統
+# InfoGold - 經歷提煉與知識資產增值規則
 #### [繁體中文 | [English](#english-version)]
 
 本專案的核心哲學是：**使用者提供的原始文本（如會議逐字稿、閱讀筆記、工作手稿或文章等）本身就是蘊含智慧的「知識金礦」**。
@@ -102,7 +102,7 @@ InfoGold/
 
 # English Version
 
-# InfoGold - Experience Refining & Knowledge Asset Value-Adding System
+# InfoGold - Experience Refining & Knowledge Asset Value-Adding Rules
 
 InfoGold is built on a core philosophy: **the user's raw input (ASR transcripts, meeting notes, personal drafts, or articles) is already a valuable "Knowledge Gold Ore"**. 
 
