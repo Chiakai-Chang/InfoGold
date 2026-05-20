@@ -8,7 +8,8 @@
   * `00_source_[原始檔名].txt` - 原始封存的輸入文字檔
   * `01_cleaned_text.md` - 乾淨整理且保留發言術語的文本
   * `02_structured_summary.md` - 結構化重點與行動方針表格 (臺灣在地化)
-  * `03_strategy_roadmap.md` - 自適應分析與 90 天執行路徑 (臺灣在地化)
+  * `03_expert_discussion.md` - 專家與利害關係人圓桌辯證對話錄 (臺灣在地化)
+  * `04_strategy_roadmap.md` - 自適應分析與落地執行路徑 (臺灣在地化)
   * `metadata.json` - 執行狀態中繼資料
 
 *注意：本資料夾內的所有子資料夾與產出文件皆已設定 gitignore 排除，絕對不會被 commit 或上傳到遠端 GitHub，保障您的隱私與商業機密安全。*
