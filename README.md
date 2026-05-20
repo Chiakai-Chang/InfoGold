@@ -39,19 +39,21 @@ AI 會在讀取逐字稿後，智慧評估會議的複雜度與主題，**自動
 
 根據您的辦公環境，選擇以下任一方式使用：
 
-### 方式一：網頁複製貼上（最簡單）
+### 方式一：網頁複製貼上（免安裝，最簡單）
 適用於使用 ChatGPT、Claude.ai、Gemini 等網頁版對話介面的使用者。
-1. 開啟本專案的 [`RefineryPrompt.md`](file:///D:/MyProject/InfoGold/RefineryPrompt.md)。
-2. 複製該檔案內的所有 Prompt 內容，貼入 AI 網頁對話框。
+1. 開啟本專案的 [`InfoGold.md`](file:///D:/MyProject/InfoGold/InfoGold.md)。
+2. 複製該檔案內的**所有內容**，直接貼入 AI 網頁對話框中。
 3. 在最下方附上您的原始逐字稿文字，送出即可。
 
 ### 方式二：本地文件調用
 適用於使用可在本機讀寫檔案的 AI 助理（如 Claude Code, Gemini CLI, Pi 等）。
 1. 將本專案複製/下載至您的電腦。
-2. 將您的原始逐字稿文字檔放入 `test/` 資料夾中（例如 `test/my_transcript.txt`）。
+2. 將您的原始逐字稿文字檔（如 `.txt` 檔）放入 `test/` 資料夾中。
 3. 對您的 AI 助理輸入最簡指令：
-   > `"請閱讀 @InfoGold.md"`
-   *(AI 將會自動偵測並讀取 `test/` 資料夾下的文字檔，無需每次手動輸入長檔名)*
+```text
+請閱讀 @InfoGold.md
+```
+*(AI 將會自動偵測並讀取 `test/` 資料夾下的文字檔，無需每次手動輸入長檔名)*
 4. AI 將自動在資料夾中生成 `output/` 資料夾與三份整理後的報告。
 
 ### 方式三：安裝為全域指令
@@ -94,8 +96,21 @@ Transform raw transcript text into three structured deliverables in one shot:
 3. **Actionable Strategic Analysis**: Evaluates raw inputs via standard business/public-sector frameworks (SWOT, 5 Whys, etc.) and provides a concrete **30-60-90 day roadmap** outlining the next steps.
 
 ## 🚀 How to Use
-1. **Web UI (Copy-Paste)**: Copy [`RefineryPrompt.md`](file:///D:/MyProject/InfoGold/RefineryPrompt.md) and paste it into ChatGPT/Claude Web, followed by your transcript text.
-2. **Local AI CLI**: Put [`InfoGold.md`](file:///D:/MyProject/InfoGold/InfoGold.md) in your workspace folder and run:
-   `"Please read @InfoGold.md, then help organize @my_transcript.txt"`
-3. **Global Custom Command**: Store `InfoGold.md` contents globally in your assistant's settings and call:
-   `infogold @my_transcript.txt`
+
+### Mode 1: Web UI (Copy-Paste)
+1. Open [`InfoGold.md`](file:///D:/MyProject/InfoGold/InfoGold.md), copy all of its content, and paste it into ChatGPT/Claude Web.
+2. Paste your raw transcript at the bottom and submit.
+
+### Mode 2: Local AI CLI
+1. Put your transcript file inside the `test/` folder.
+2. Run the following command in your terminal:
+```text
+Please read @InfoGold.md
+```
+*(The AI will automatically locate the transcript in the `test/` folder and generate output files in `output/`)*
+
+### Mode 3: Global Custom Command
+Save the rules from `InfoGold.md` globally in your assistant's settings and run:
+```bash
+infogold
+```
