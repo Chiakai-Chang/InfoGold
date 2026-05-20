@@ -1,24 +1,25 @@
-# InfoGold - 知識資產生成與提取框架 (Knowledge Asset Generation & Extraction Framework)
+# InfoGold - 經歷提煉與知識資產增值框架 (Experience Refining & Knowledge Asset Value-Adding Framework)
 #### [繁體中文 | [English](#english-version)]
 
-本專案定義了一套系統化的 **知識資產生成與提取框架 (KAGEF)**。透過結構化的提示詞規範與自動化隔離目錄，協助使用者利用 AI 助理（如 Claude Code, Gemini, Pi 或網頁版 ChatGPT/Claude）將雜亂的會議逐字稿、閱讀筆記、工作手稿、企劃草案或文章，**一氣跨越轉化為具備「可複利價值」與「行動策略」的知識資產套件**。
+本專案的核心哲學是：**使用者提供的原始文本（如會議逐字稿、閱讀筆記、工作手稿或文章等）本身就是蘊含智慧的「知識金礦」**。
+
+InfoGold 扮演著「煉金助理」的角色，透過結構化的提示詞規範與自動化隔離目錄，協助使用者利用 AI 助理（如 Claude Code, Gemini, Pi 或網頁版 ChatGPT/Claude）對原始文字資產進行**三部曲提煉與策略增值**，一氣呵成轉化為可複利、可行動的「黃金知識資產套件」。
 
 ---
 
-## 🎯 框架三支柱 (Framework Pillars)
-本專案的底層設計不僅是文字整理，更是尊重並保存使用者原有的知識脈絡，進而實行多層次「價值加值」的閉環系統：
+## 🎯 煉金三部曲：知識資產價值加值階梯
 
-1. **第一支柱：資產保存與精煉 (Asset Preservation & Refinement)** ➔ 生成 `01_cleaned_text.md`
-   * **核心哲學**：使用者提供的原始文本（如會議逐字稿、手稿或筆記隨筆）本身就是珍貴的**原始知識資產**。本支柱旨在「妥善保存原始語料做為未來參考」。
-   * **實踐**：在保留原始發言脈絡的前提下，自動清理口語贅字、排版錯位，還原成高可讀性、條理分明的精煉文本，作為該知識資產的**第一層加值**。在此階段**忠實保留原始發言術語**，以維護最真實的現場情境與話語權。
+1. **第一階段：洗礦與原意固化 (Washing & Preservation)** ➔ 生成 `01_cleaned_text.md`
+   * **核心哲學**：原始資料本身即是核心資產，必須妥善保存作為未來溯源與參考依據。
+   * **實踐**：在保留原始語彙與語意的前提下，自動清理口語贅字與排版雜訊，還原成高可讀性、條理分明的精煉文本。在此階段**堅決不替換發言者原有的專業術語或習慣用法**，維護最真實的現場情境與發言話語權。
 
-2. **第二支柱：結構對齊與梳理 (Structural Alignment & Bridging)** ➔ 生成 `02_structured_summary.md`
-   * **核心哲學**：在保存原始資產的基礎上，將其中的凌亂資訊整理成可讀性更高、更有條理的決策報告文獻。
-   * **實踐**：提煉 3 項核心結論與議題邏輯矩陣，套用臺灣商務/公務在地化專業語彙。使用**費曼技巧**解構討論中的「思維斷層（想法衝突與共識點）」，並將隨機討論出的點子轉化為具備權責劃分與具體期限的行動方針。
+2. **第二階段：精煉金磚 (Structuring & Readability)** ➔ 生成 `02_structured_summary.md`
+   * **核心哲學**：將長篇或散落的原始資產，組織成高清晰度、便於跨部門呈報與分享的結構化加值文獻。
+   * **實踐**：提煉核心結論與議題邏輯矩陣（套用臺灣商務/公務在地化專業語彙），使用**費曼技巧**解構討論中的「思維斷層（想法衝突點與共識）」，並將隨機好點子轉化為具備負責人與期限的標準待辦事項。
 
-3. **第三支柱：價值延伸與決策增值 (Value Extension & Strategic Compounding)** ➔ 生成 `03_strategy_roadmap.md`
-   * **核心哲學**：不僅停留在整理，更進一步從已精煉的資產中**「延伸、萃取、分析出更多可複利、可行動的戰略價值」**。
-   * **實踐**：AI 智慧評估文本主題，複合使用分析工具（SWOT/TOWS、JTBD、5 Whys 根因分析、OKR、痛點分析等）。報告中的每點結論**強迫標註行號引註**（例如 `[Ref: Line X]`）以供隨時溯源，並規劃具體的 30-60-90 天 SOP 落地路徑，協助使用者與團隊將經驗轉化為未來的執行能力。
+3. **第三階段：鑄造策略貨幣 (Strategic Compounding & Action)** ➔ 生成 `03_strategy_roadmap.md`
+   * **核心哲學**：不只停留在整理，更進一步從精煉資產中**「延伸、萃取、分析出更多可複利、可行動的戰略價值」**，將歷史經歷與點子鑄造為引導未來的執行決策。
+   * **實踐**：AI 智慧評估主題，自適應複合使用分析框架（SWOT/TOWS、JTBD、5 Whys 根因分析、OKR、痛點分析等）。報告中的每點結論**強迫標註行號或段落引註**確保字字有據，並規劃出 30-60-90 天的可行動 SOP 執行路徑（Roadmap）。
 
 ---
 
@@ -99,13 +100,16 @@ InfoGold/
 
 # English Version
 
-This project provides a structured prompt framework to help users organize raw ASR transcripts into a systematic decision-support package using AI assistants.
+# InfoGold - Experience Refining & Knowledge Asset Value-Adding Framework
 
-## 🎯 Goal
-Transform raw transcript text into three structured deliverables in one shot:
-1. **Clean Verbatim Transcript**: Corrects terms, cleans filler words, and aligns speakers.
-2. **Structured Summary & Takeaways**: Captures agendas, debates, compromise points, and action tables.
-3. **Actionable Strategic Analysis**: Evaluates raw inputs via standard business/public-sector frameworks (SWOT, 5 Whys, etc.) and provides a concrete **30-60-90 day roadmap** outlining the next steps.
+InfoGold is built on a core philosophy: **the user's raw input (ASR transcripts, meeting notes, personal drafts, or articles) is already a valuable "Knowledge Gold Ore"**. 
+
+Instead of generating content from scratch, InfoGold serves as your "Refining Assistant" to preserve, structure, and compound this asset in a 3-step value-adding process:
+
+## 🎯 Value-Adding Trilogy
+1. **Preservation & Washing (`01_cleaned_text.md`)**: Cleans filler words and organizes syntax while strictly **preserving raw domain-specific terminology** to safeguard verbatim authenticity.
+2. **Structuring & Readability (`02_structured_summary.md`)**: Structures disorganized content into clear key findings, logic matrices, and action lists, localized to regional context.
+3. **Strategic Compounding (`03_strategy_roadmap.md`)**: Applies business/public sector frameworks (SWOT, OKR, 5 Whys) and maps out a concrete **30-60-90 day roadmap** to translate historical experience into forward-looking strategic value.
 
 ## 🚀 How to Use
 
