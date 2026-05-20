@@ -1,25 +1,27 @@
-# InfoGold - 會議逐字稿整理與分析工具
+# InfoGold - 會議逐字稿系統化整理與行動分析工具
 #### [繁體中文 | [English](#english-version)]
 
-本專案提供一套結構化的提示詞規範，協助使用者利用 AI 助理（如 Claude Code, Gemini, Pi 或網頁版 ChatGPT/Claude）將雜亂的會議錄音逐字稿整理為排版乾淨、具參考價值的會議紀錄與分析報告。
+本專案提供一套結構化的提示詞規範，協助使用者利用 AI 助理（如 Claude Code, Gemini, Pi 或網頁版 ChatGPT/Claude）將雜亂的會議或談話錄音逐字稿，**系統化地一氣呵成產出一整套結構化決策套件**。不僅能還原乾淨的發言紀錄，更能進行深度策略分析，並提供具備可行動價值（Actionable Value）的下一步執行建議。
 
 ---
 
 ## 🎯 專案目標
-原始錄音轉文字（ASR）常伴隨口語重複、錯別字、發言人混亂等問題。本專案旨在：
-1. 自動清理語氣贅字、校正專有名詞，還原乾淨的發言紀錄。
-2. 根據談話主題，套用常見的分析框架進行重點摘要與後續行動跟進。
-3. 確保所有分析結論皆附帶原始逐字稿行號，便於後續查證，避免 AI 幻覺。
+原始錄音轉文字（ASR）常伴隨口語重複、錯別字與發言混亂，且通常缺乏脈絡整理與具體行動方針。本專案旨在提供系統化的精煉流程，將 raw 檔逐字稿一併轉化為以下三份具備實行價值的結構化產出：
+1. **乾淨的發言紀錄**：自動清理語氣贅字、修正專有名詞與台英語錯字，產出排版清晰的對齊逐字稿。
+2. **結構化會議重點摘要**：條列會議核心結論、會議議題與結論矩陣、爭議與妥協歷程，以及具體的待辦行動事項表。
+3. **行動價值的戰略分析與執行路徑**：自適應套用商務/公務分析框架（如 SWOT、5 Whys、JTBD 等），並規劃出具體的 **30-60-90 天落地執行路徑（Roadmap）**，指出下一步該怎麼做。
 
 ---
 
 ## 🧠 整理原理與分析框架
-AI 會在讀取逐字稿後，自動判斷會議本質並套用以下適合的分析框架（可單獨套用或複合使用）：
-* **SWOT 分析 + TOWS 矩陣**：適用於政策規劃、市場評估與發展策略會議。
-* **JTBD (Jobs-to-be-Done) + 價值主張**：適用於服務設計、民眾需求與體驗分析。
-* **5 Whys 根因分析 + RACI 矩陣**：適用於流程失誤、專案延宕或跨部門權責釐清。
-* **Pain & Gain 痛點分析**：適用於民意陳情、客戶反饋與公聽會意見整理。
-* **OKR 目標對齊 + 艾森豪矩陣**：適用於定期工作會報、時程進度同步與任務分配。
+AI 會在讀取逐字稿後，智慧評估會議的複雜度與主題，**自動拼裝並複合使用**以下最適合的分析框架，以產出具備行動價值的決策建議，並於報告開頭說明框架選用理由：
+* **SWOT 分析 + TOWS 矩陣**：適用於涉及政策發展規劃、資源盤點或重大發展策略會議。
+* **JTBD (Jobs-to-be-Done) + 價值主張**：適用於探討公共服務設計、便民措施改進與民眾期待分析。
+* **5 Whys 根因分析 + RACI 責任分配**：適用於專案延宕、流程缺失檢討、跨部門協調障礙與權責釐清。
+* **Pain & Gain 痛點分析**：適用於民意反饋彙整、公聽會意見整理與陳情案件剖析。
+* **OKR 目標對齊 + 艾森豪優先權矩陣**：適用於定期工作會報同步、施政計畫進度追蹤與科室分工。
+
+*特別要求：報告中的每一項戰略分析結論，皆會自動標註逐字稿的**行號引用**（例如 `[Ref: Line 42]`），確保字字有據，便於呈報與查證。*
 
 ---
 
@@ -55,10 +57,10 @@ InfoGold/
 ├── Draft.md                # 原始專案實作規格書 (藍圖)
 ├── asr_input_example.txt   # 跨部門協調會議的原始譯文範例
 ├── README.md               # 本說明文件
-└── output/                 # 執行後自動產出的整理結果
-    ├── 01_raw_aligned.md   # 清理且標記發言人的乾淨逐字稿
-    ├── 02_structured.md    # 結構化會議重點摘要與待辦事項表格
-    └── 03_strategy.md      # 自適應分析報告與 90 天執行路徑
+└── output/                 # 執行後自動產出的決策套件
+    ├── 01_raw_aligned.md   # [產出一] 清理且標記發言人的乾淨逐字稿
+    ├── 02_structured.md    # [產出二] 結構化重點摘要、妥協歷程與待辦事項表格
+    └── 03_strategy.md      # [產出三] 自適應戰略分析報告與 30-60-90 天落地路徑
 ```
 
 ---
@@ -67,12 +69,13 @@ InfoGold/
 
 # English Version
 
-This project provides a structured prompt framework to help users organize raw, noisy ASR transcripts into clean records and strategic summaries using AI assistants.
+This project provides a structured prompt framework to help users organize raw ASR transcripts into a systematic decision-support package using AI assistants.
 
 ## 🎯 Goal
-1. Clean up filler words, correct technical terms, and align speaker roles.
-2. Synthesize structured takeaways and action items using standard analytical frameworks.
-3. Ensure traceabilty by adding line-number references back to the source text.
+Transform raw transcript text into three structured deliverables in one shot:
+1. **Clean Verbatim Transcript**: Corrects terms, cleans filler words, and aligns speakers.
+2. **Structured Summary & Takeaways**: Captures agendas, debates, compromise points, and action tables.
+3. **Actionable Strategic Analysis**: Evaluates raw inputs via standard business/public-sector frameworks (SWOT, 5 Whys, etc.) and provides a concrete **30-60-90 day roadmap** outlining the next steps.
 
 ## 🚀 How to Use
 1. **Web UI (Copy-Paste)**: Copy [`RefineryPrompt.md`](file:///D:/MyProject/InfoGold/RefineryPrompt.md) and paste it into ChatGPT/Claude Web, followed by your transcript text.
