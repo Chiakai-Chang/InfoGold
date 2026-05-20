@@ -1,49 +1,58 @@
-# 戰略分析與落地路徑報告 (Strategic Analysis & Actionable Roadmap)
+# 自適應戰略分析報告 (`output/03_strategy.md`)
 
-- **Selected Framework / 採用框架**: 5 Whys Root Cause Analysis & RACI Matrix (5 Whys 根因分析與 RACI 權責分配)
-- **Classified Category / 檔案分類**: C. 技術架構 / 故障檢討 (Technical Post-Mortem)
-
----
-
-## 1. 5 Whys Root Cause Analysis / 5 Whys 根因分析
-
-* **Why 1: Why did the database go offline for nearly 3 hours? / 為什麼資料庫會中斷服務將近 3 小時？**
-  * *Answer*: The replication node ran out of disk space, causing K8s pods to crash loop. `[Ref: output/01_raw_aligned.md#L6-L8]` (主從複製節點磁碟空間爆滿，導致 K8s pod 持續崩潰重啟。)
-* **Why 2: Why did the disk space run out so suddenly? / 為什麼磁碟空間會突然被塞滿？**
-  * *Answer*: Log files generated faster than the 24-hour automated cleanup cycle could delete them. `[Ref: output/01_raw_aligned.md#L9-L10, L15-L16]` (Debug 模式產生的 Log 日誌爆量，在 24 小時自動清理排程執行前就已撐爆硬碟。)
-* **Why 3: Why was there a 10x surge in log generation rate? / 為什麼日誌產生速度會暴增十倍？**
-  * *Answer*: During last month's system update, the log level was manually set to "Debug" and was not reverted to production standard. `[Ref: output/01_raw_aligned.md#L14-L15]` (上個月系統更新時，日誌級別被手動調成 Debug，事後忘記還原。)
-* **Why 4: Why did the team forget to revert the log level to production standards? / 為什麼團隊會忘記將日誌級別還原？**
-  * *Answer*: The change was done manually, and there was no post-deployment verification checklist or automated configuration audit in place. `[Ref: output/01_raw_aligned.md#L18-L20]` (修改是透過手動進行，且部署檢討的查核清單中並未寫入該項檢查，亦無自動化稽核。)
-* **Why 5: Why were configurations modified manually without automation or verification? / 為什麼配置需手動修改且缺乏自動化稽核？**
-  * *Answer*: The deployment script optimization project was delayed, and the scheduled disk cleanup project was postponed due to resource diversion to other features. `[Ref: output/01_raw_aligned.md#L8-L9, L19-L20]` (部署腳本最佳化專案因故落後，且原定的硬碟清理專案人員被抽調去支援其他優化專案，導致基礎維運失防。)
+本報告針對「科偵學習平台推廣瓶頸與學術研究轉型」進行深度剖析。根據分析助理評估，本案複合採用 **5 Whys 根因分析**、**JTBD (Jobs-to-be-Done)** 與 **TOWS 策略矩陣** 進行綜合解析。
 
 ---
 
-## 2. RACI Responsibility Assignment Matrix / RACI 權責分配矩陣
+## 🔍 5 Whys 根因分析 (5 Whys Root Cause Analysis)
+為釐清「學習平台（YouTube/有聲書）推廣半年卻互動極低、無人許願」的核心痛點：
 
-* **R** (Responsible / 執行者) | **A** (Accountable / 負責人) | **C** (Consulted / 諮詢者) | **打 H** (Informed / 被通知者)
-
-| Task / 改善任務 | Operations Lead / 運維主管 | Lead DBA / 資料庫工程師 | DevOps Team / 開發運維小組 |
-| :--- | :---: | :---: | :---: |
-| **Revert production log levels / 立即還原生產環境日誌級別** | I | **A / R** | C |
-| **Incorporate log config check in CI/CD / 於 CI/CD 腳本加入日誌層級稽核** | I | C | **A / R** |
-| **Define & Update Post-Deployment Checklist / 更新部署檢驗查核清單** | **A / R** | R | C |
-| **Execute Disk Cleanup & Re-prioritize Infrastructure Tasks / 執行硬碟清理與基礎運維專案** | I | **A / R** | I |
+1. **第一層：為什麼學習平台點閱率低且無人互動？**
+   * *答*：因為同仁沒有主動上平台「許願」或閱讀有聲書的動力。`[Ref: Line 22]`
+2. **第二層：為什麼同仁沒有主動學習與許願的動力？**
+   * *答*：因為同仁日常工作繁忙，且「不知道要許什麼願」，缺乏學習資源的搜尋管道與眼光。`[Ref: Line 12, Line 30]`
+3. **第三層：為什麼同仁不知道要許什麼願、缺乏眼光？**
+   * *答*：因為同仁已習慣原有的被動接收模式（得過且過），且與 OSINT 等前沿專業論壇的接觸管道被切斷，對未知技術無從下手。`[Ref: Line 8, Line 12]`
+4. **第四層：為什麼同仁與專業學習管道切斷且缺乏主動搜尋能力？**
+   * *答*：因為原先平台設計為「單向式空白許願池」與「單向 YouTube 影片推送」，缺乏實體組織的約束力（如讀書會）與引導式的引路人機制。`[Ref: Line 12-13, Line 31]`
+5. **第五層（根因）：為什麼平台運作流於形式？**
+   * *核心根因*：**平台缺乏「組織行政推力與誘因機制」（如學術研究、學分評分、實體讀書會約束），導致學習無法「SOP 化與日常工作綁定」**。單靠研究員一人單向產出影片，不僅耗盡精力，也無法解決基層同仁的慣性阻力。`[Ref: Line 13, Line 16, Line 30-31]`
 
 ---
 
-## 3. Actionable Roadmap / 30-60-90 天落地路徑
+## 🎯 JTBD 核心任務與價值主張對齊 (Jobs-to-be-Done)
 
-### 🟢 Days 1 - 30: Incident Containment & Quick Wins (短期安全防堵)
-- **Immediate Reversion**: Revert DB logging levels to "Warn" or "Info" in production environment to prevent disk growth. (Owner: DBA)
-- **Emergency Clean**: Manually execute the disk cleanup routine and check all other system log folders. (Owner: DBA)
-- **Checklist Update**: Manually add the "Log level status" verification step to the temporary manual release checklist. (Owner: Operations Lead)
+| 科偵同仁的「待辦任務」 (Jobs) | 現有痛點 (Pains) | 期望效益 (Gains) | InfoGold 調整後的價值主張 |
+| :--- | :--- | :--- | :--- |
+| **掌握新科技犯罪手法（如洗錢、虛擬貨幣），以解決偵查現場的未知難題。** `[Ref: Line 40]` | 1. 上班時間緊湊，沒空自己做簡報或精讀萬字長文。`[Ref: Line 30]` <br>2. 缺乏搜尋 OSINT 論壇的門徑。`[Ref: Line 12]` | 1. 在 5-10 分鐘內掌握一本書或主題的底層邏輯。`[Ref: Line 17, Line 39]` <br>2. 能直接拿現成分析在讀書會報告，降低工作負擔。`[Ref: Line 30]` | **「共享式決策與學習套件」**：<br>透過 AI 自動將長文提取成簡報與重點，學員只需上傳文章，AI 即刻自動排版並生成對話，學員可以直接拿著產出在讀書會討論，達到「極致利他」與「輕鬆學習」的雙贏。`[Ref: Line 30, Line 43-45]` |
 
-### 🟡 Days 31 - 60: Automation & Governance (中期自動化與治理)
-- **CI/CD Log Audit**: Implement automatic checks in the deployment scripts to flag debug logs in production configurations. (Owner: DevOps Team)
-- **Monitoring Alerts**: Setup real-time Prometheus/Grafana alerts for disk partition utilization (>85% triggers high-severity notification). (Owner: Operations Lead)
+---
 
-### 🔴 Days 61 - 90: Resilience & Structural Optimization (長期韌性最佳化)
-- **Resume Delayed Cleanup Project**: Formally allocate DBA hours to finish the automated disk space reclaiming and log rotation pipeline. (Owner: DBA)
-- **Process Review**: Evaluate resource allocation processes to ensure basic stability projects (硬碟清理) are not delayed by optimization project feature creep. (Owner: Operations Lead)
+## ⚡ TOWS 策略交叉矩陣 (TOWS Matrix)
+
+| | **優勢 (Strengths)**<br>1. 已有運作半年的平台與 376 位訂閱者。`[Ref: Line 22]`<br>2. 擁有 NotebookLM 及主題標籤分析技術。`[Ref: Line 16, Line 44]` | **劣勢 (Weaknesses)**<br>1. 手動轉 YouTube 影片極度耗費時間精力。`[Ref: Line 16, Line 37]`<br>2. 同仁主動回饋與學習意願極低。`[Ref: Line 8, Line 10]` |
+| :--- | :--- | :--- |
+| **機會 (Opportunities)**<br>1. 指導教授（施主任）提供學術論文包裝支持。`[Ref: Line 47]`<br>2. 可利用學校（警專/二技）班級進行教學實驗。`[Ref: Line 24, Line 42]` | **【SO 成長戰略】：**<br>利用現有的技術優勢，在二技班級進行「AI 輔助教學實驗」，以學術發表（論文）為火車頭，拉動平台的使用率，將平台技術固化為研究成果。`[Ref: Line 27, Line 36]` | **【WO 轉型戰略】：（核心戰略）**<br>放棄研究員單向製作 YouTube 影片的沉重負擔。改為「課堂/讀書會」強迫使用制，由學員上傳內容，研究員僅進行 Hashtag 後台統計與問卷分析，消除精力損耗。`[Ref: Line 42-45]` |
+| **威脅 (Threats)**<br>1. 公務人員身分面臨的版權轉播問題。`[Ref: Line 41]`<br>2. 評審老師對 AI 幻覺與正確性的質疑。`[Ref: Line 38]` | **【ST 防禦戰略】：**<br>限制學習材料來源，改為「指定安全教材」或「學員自主找文章上傳分享」（合理使用），避開研究員以平台名義公播的版權紅線。`[Ref: Line 41-43]` | **【WT 避險戰略】：**<br>在學術包裝上，將研究重點鎖定在「數位學習動機與興趣評估」，而非 AI 精確度。並以前後測問卷（定量分析）向評審證明工具的引導價值，化解幻覺爭議。`[Ref: Line 26, Line 39]` |
+
+---
+
+## 📅 30-60-90 天落地執行路徑 (Actionable Roadmap)
+
+### 🔹 1-30 天：實驗啟動與前測階段 (實驗 SOP 化)
+* **SOP 步驟 1**：研究員挑選 5 個精選教材（包含洗錢模式與經濟犯罪文章），備妥問卷。`[Ref: Line 24, Line 46]`
+* **SOP 步驟 2**：在二技班級發布規則，請 15 位學員挑選三個最感興趣的主題並填寫「前測問卷」。`[Ref: Line 24, Line 33]`
+* **SOP 步驟 3**：設定 AI 平台，匯入指定文章，準備提供學員進行閱讀與整理。`[Ref: Line 43]`
+* **負責人**：研究員（執行）、施主任（行政協調與資源對齊）。
+
+### 🔹 31-60 天：教學實驗與數據收集 (平台運作 SOP 化)
+* **SOP 步驟 4**：學員使用 AI 整理工具產出簡報與摘要，並在實體「讀書會」上進行互相報告與討論，免除人工做簡報的痛苦。`[Ref: Line 30, Line 43]`
+* **SOP 步驟 5**：研究員從後台提取學員的點擊數據與關注的 Hashtag，記錄年輕科偵學員的「知識偏好」。`[Ref: Line 44-45]`
+* **SOP 步驟 6**：實驗結束後，發放「後測問卷」，收集學員對「AI 輔助學習工具」的使用意向與成效回饋。`[Ref: Line 25-26, Line 34]`
+* **負責人**：研究員（全權負責）。
+
+### 🔹 61-90 天：學術寫作與發表 (智慧固化階段)
+* **SOP 步驟 7**：進行問卷數據的信效度分析，以及前後測配對 t 檢定，驗證 AI 工具對學習興趣的正面效益。`[Ref: Line 27]`
+* **SOP 步驟 8**：撰寫論文，重點放在「利用 AI 輔助工具對預備科偵人員之學習動機影響與 Hashtag 需求分析」。`[Ref: Line 35-36, Line 39]`
+* **SOP 步驟 9**：投稿研討會或學術期刊，將此半年的實踐經驗正式「固化」為個人的學術成果與團隊複利資產。`[Ref: Line 36, Line 47]`
+* **負責人**：研究員（主筆撰寫）、施主任（論文修改與包裝指導）。

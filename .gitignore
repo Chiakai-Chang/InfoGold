@@ -1,1 +1,5 @@
 .antigravitycli/
+test/*
+!test/.gitkeep
+output/*
+!output/.gitkeep

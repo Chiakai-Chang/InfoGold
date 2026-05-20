@@ -47,14 +47,17 @@ AI 會在讀取逐字稿後，智慧評估會議的複雜度與主題，**自動
 
 ### 方式二：本地文件調用
 適用於使用可在本機讀寫檔案的 AI 助理（如 Claude Code, Gemini CLI, Pi 等）。
-1. 將本專案的 [`InfoGold.md`](file:///D:/MyProject/InfoGold/InfoGold.md) 規則檔與您的逐字稿文字檔放入同一個資料夾。
-2. 對您的 AI 助理輸入指令：
-   > `"請閱讀 @InfoGold.md，然後協助整理 @您的逐字稿檔案.txt"`
-3. AI 將自動在資料夾中生成 `output/` 資料夾與三份整理後的報告。
+1. 將本專案複製/下載至您的電腦。
+2. 將您的原始逐字稿文字檔放入 `test/` 資料夾中（例如 `test/my_transcript.txt`）。
+3. 對您的 AI 助理輸入最簡指令：
+   > `"請閱讀 @InfoGold.md"`
+   *(AI 將會自動偵測並讀取 `test/` 資料夾下的文字檔，無需每次手動輸入長檔名)*
+4. AI 將自動在資料夾中生成 `output/` 資料夾與三份整理後的報告。
 
 ### 方式三：安裝為全域指令
 如果您經常需要使用此功能，可以將 [`InfoGold.md`](file:///D:/MyProject/InfoGold/InfoGold.md) 中的規則內容複製，貼入您的 AI 助理全域自訂指令中，即可隨時在命令列直接呼叫：
-> `infogold @您的逐字稿檔案.txt`
+> `infogold`
+*(預設會直接讀取當前工作目錄下 `test/` 資料夾中的逐字稿)*
 
 ---
 
@@ -65,12 +68,15 @@ InfoGold/
 ├── InfoGold.md             # 本地端引導 AI 助理的規則檔
 ├── RefineryPrompt.md       # 網頁版 AI 複製貼上的 Prompt 範本
 ├── Draft.md                # 原始專案實作規格書 (藍圖)
-├── asr_input_example.txt   # 跨部門協調會議的原始譯文範例
+├── test/                   # 原始逐字稿存放資料夾 (內含範例檔，已設定隱私安全 gitignore)
+│   ├── .gitkeep            # 資料夾說明檔
+│   └── 5月18日與施主任討論意見.txt  # 內建的跨部門研究會議原始對話範例
 ├── README.md               # 本說明文件
 └── output/                 # 執行後自動產出的決策套件
+    ├── .gitkeep            # 資料夾說明檔
     ├── 01_raw_aligned.md   # [產出一] 清理且標記發言人的乾淨逐字稿
     ├── 02_structured.md    # [產出二] 結構化重點摘要、妥協歷程與待辦事項表格
-    └── 03_strategy.md      # [產出三] 自適應戰略分析報告與 30-60-90 天落地路徑
+    └── 03_strategy.md      # [產出三] 自適應分析報告與 30-60-90 天落地路徑
 ```
 
 ---

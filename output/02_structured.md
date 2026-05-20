@@ -1,33 +1,39 @@
-# 結構化會議重點摘要 (Structured Meeting Digest)
+# 結構化會議重點摘要 (`output/02_structured.md`)
 
-## 1. Executive Summary / 摘要總覽
-* **Incidental Outage / 嚴重服務中斷**: A major database disconnect caused a 3-hour service outage, which was only detected after user complaints due to monitoring gaps. (昨晚發生嚴重的資料庫斷線事故，導致服務中斷近三小時。由於監控系統失效，此事故最終是透過客訴才被發現。)
-* **Root Cause of Disk Full / 磁碟爆滿的主因**: The server crashed because log levels were left on Debug mode manually last month, inflating logs by 10x and filling up the disk faster than the 24-hour auto-cleanup cycle could handle. (磁碟爆滿的主因為上月手動調成 Debug 模式後忘記復原，導致 Log 產生速度暴增十倍，超出了每 24 小時自動清理排程的負荷速度。)
-* **Resource Conflict & Governance Deficit / 資源衝突與流程漏洞**: The scheduled disk cleanup project was delayed due to resource redirection to other quality optimization projects. Additionally, manual configuration changes were not documented in the deployment checklist. (硬碟清理專案因人員支援其他優化專案而延宕；且手動變更日誌層級的行為並未納入上線查核清單，曝露了發布流程的管理漏洞。)
-
----
-
-## 2. Agenda & Topic Matrix / 會議議題矩陣
-
-| Topic / 議題 | Timeline/Sequence / 排序 | Core Arguments / 主要論點 |
-| :--- | :--- | :--- |
-| **Incident Status Sync / 事故現況同步** | 01 | The database replication replication nodes failed and pods restarted due to disk exhaustion, causing a 3-hour downtime. (資料庫主從複製節點延遲，K8s Pods 重啟，主因為磁碟空間爆滿導致 3 小時斷線。) |
-| **Root Cause Investigation / 根因追查** | 02 | The log level was manually set to Debug during last month's release and was not reverted, generating 10x more logs. (上月發布時手動將日誌層級調至 Debug 後漏未復原，導致 Log 爆量 10 倍，沖垮了 24 小時清理排程。) |
-| **Process Improvement / 流程優化與防堵** | 03 | Need to integrate automatic log-level config in deployment scripts and enforce a post-incident RACI matrix. (需將日誌設定寫入自動化部署腳本，並建立後續的監控與部署 RACI 權責分配。) |
+## 📌 Executive Summary / 核心結論
+1. **推廣策略的根本性轉向**：原先以大眾為目標的「公開 YouTube 平台」學習轉換效率差且有公務員智慧財產權疑慮，必須轉向「封閉式課堂教學實驗」（如二技 15 人班級）進行強迫式前/後測驗證，方能順利推進。`[Ref: Line 21-23, Line 41-42]`
+2. **AI 幻覺與研究範疇定位**：本研究重點在於「數位學習的興趣與成效激發」，而非解決 AI 本身的技術幻覺。AI 的技術不完美是現實，但做為輔助學習工具的成效才是此階段的研究核心。`[Ref: Line 38-39]`
+3. **從「空白許願池」到「限制性選擇」**：基於同仁對 OSINT 等專業論壇缺乏管道、不知道如何許願的痛點，應改為提供「有限的優質主題清單」（如洗錢、虛擬貨幣），限制同仁進行三選一，以精準掌握基層的真實知識缺口。`[Ref: Line 12, Line 33-34]`
 
 ---
 
-## 3. Debate & Compromise Nodes / 爭議與妥協歷程
-* **Resource Prioritization Tradeoff / 資源分配與專案延期**:
-  * *Context*: The disk cleanup project was originally scheduled for last week but was postponed because the DBA was pulled to support "other quality optimization projects" (優化專案).
-  * *Compromise*: The team acknowledged that delaying basic infrastructure cleanup (硬碟清理) to chase feature optimizations created a single point of failure (SPOF). They agreed to prioritize operational stability tasks equally with optimization requests.
+## 📅 Agenda & Topic Matrix / 會議議題與論點矩陣
+| 順序 | 議題 (Topic) | 核心論點 (Core Arguments) | 逐字稿引用 (References) |
+| :---: | :--- | :--- | :--- |
+| 1 | **持續學習平台推廣失敗** | 營運半年僅 376 人訂閱且少有互動，同仁缺乏主動學習動力。 | `[Ref: Line 8, Line 21-22]` |
+| 2 | **有聲書與影片製作痛點** | 使用 NotebookLM 生成文字後需耗費大量人工進行影片與圖片編輯，轉換 YouTube 效率極差。 | `[Ref: Line 15-18, Line 37]` |
+| 3 | **學術研究策略調整** | 指導教授建議轉型為「教學實驗問卷設計」，透過前/後測分析工具成效，快速產出論文。 | `[Ref: Line 24-27, Line 34-36]` |
+| 4 | **版權與公務安全防禦** | 避免公務人員身分直接改造並廣播他人著作，改由學生上傳文章，AI 提取 Hashtag 進行分析。 | `[Ref: Line 41-44]` |
 
 ---
 
-## 4. Action Item Matrix / 行動方針矩陣
+## 🗣️ Debate & Compromise / 爭議與妥協歷程（費曼解構）
+* **【爭議點一】：AI 生成內容的幻覺與正確性**
+  * *研討意見*：評審或老師通常會挑戰 AI 自動生成的簡報是否包含幻覺或錯誤資訊。`[Ref: Line 38]`
+  * *思維斷層補齊*：AI 幻覺是目前的技術限制。如果研究目標是「AI 技術開發」，則幻覺是致命傷；但如果研究焦點在於「教育訓練中，AI 工具是否能激發學員的探索興趣與學習動機」，則幻覺可以視為實驗控制的常態變數。
+  * *妥協共識*：將研究定位在「數位學習（E-learning）」領域，重點測量「工具使用對學習動機的引導」，避開直接解決 AI 技術幻覺的學術死胡同。`[Ref: Line 39]`
 
-| Action Item / 行動方針 | Assigned Owner / 負責人 | Implied Deadlines/Constraints / 期限與限制 |
-| :--- | :--- | :--- |
-| Revert log level from Debug to Info/Warn on production. (將生產環境的日誌層級從 Debug 還原為正常層級) | 資料庫工程師 / DBA | Immediate / 立即執行 |
-| Integrate automatic log level check in the deployment script. (在部署腳本中加入自動化日誌層級稽核) | 資料庫工程師 / DBA | Next release cycle / 下個發布週期 |
-| Update post-deployment checklist to include log-level check. (更新發布檢討的手動查核清單，加入日誌層級檢查) | 運維主管 / 主持人 | By end of week / 本週內 |
+* **【爭議點二】：有聲書影片生成痛苦與版權疑慮**
+  * *研討意見*：研究員耗費巨大精力將 NotebookLM 文字轉為 YouTube 影片，且公務人員身分有版權轉播疑慮，想放棄平台。`[Ref: Line 15-16, Line 41]`
+  * *思維斷層補齊*：先前是研究員單向「產出內容給同仁看」（這會帶來巨大的製作壓力與版權責任）；如果轉化為「讀書會/課堂模式」，由學生（學員）自己找文章上傳，平台僅負責 Hashtag 提取與分析，研究員即從「內容生產者」轉為「平台分析者」，版權責任轉移給學習主體。
+  * *妥協共識*：放棄單向的 YouTube 推廣，轉向在警專/二技成立實體讀書會，讓學員自己餵資料，研究員在後台分析 Hashtag 數據，藉此了解年輕一輩科偵人員的知識需求。`[Ref: Line 42-45]`
+
+---
+
+## 📝 Action Items / 行動方針表格
+| 編號 | 具體行動方針 (Action Item) | 負責人 (Assignee) | 期限 (Timeline) | 備註 (Remarks) |
+| :---: | :--- | :--- | :--- | :--- |
+| 1 | 設計教學實驗問卷（包含前測與後測），尋找已被學術驗證的成熟問卷模板。 | 研究員 | 下週一前 | `[Ref: Line 27-28]` |
+| 2 | 精選 5 個與科偵相關的文章或主題（如：洗錢模式、虛擬貨幣），作為課堂指定選題。 | 研究員 | 下週一前 | `[Ref: Line 33-34, Line 46]` |
+| 3 | 在二技班級宣佈實驗規則，分配研究主題，強迫學員進行三選一並填寫前測。 | 研究員 / 施主任協助 | 下週一課堂 | `[Ref: Line 24-25, Line 46-47]` |
+| 4 | 後台系統功能調整：設定提取 Hashtag 機制，用於統計並分析學員的知識焦點。 | 研究員 | 兩週內 | `[Ref: Line 44-45]` |
