@@ -78,6 +78,7 @@ InfoGold/
 └── output/                 # 執行後自動產出的決策套件 (已設定隱私安全 gitignore)
     ├── .gitkeep            # 資料夾說明檔
     └── YYYYMMDD_[主題]/    # 每次執行產生的獨立決策支援套件資料夾
+        ├── README.md       # [導覽門戶] 各份報告的核心亮點摘要與連結
         ├── metadata.json   # 本次執行日誌與狀態中繼資料
         ├── 01_cleaned_text.md  # [產出一] 精煉清理且保留原文語彙的完整文本
         ├── 02_structured_summary.md # [產出二] 結構化重點與行動矩陣 (臺灣在地化)
