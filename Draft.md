@@ -1,6 +1,8 @@
 # Project Blueprint: InfoGold - Strategic Transcript Refinery & Lapis Lazuli Engine
 
-This document serves as the absolute implementation blueprint and requirements specification for the Coding Agent (e.g., Gemini CLI, Claude Code). Read this blueprint concurrently with `skill.md` to guarantee an idempotent, secure, and robust execution pipeline.
+> [!NOTE]
+> 本文件為 InfoGold 專案開發之初的**原始實作規格藍圖 (Historical Blueprint)**，用於紀錄設計概念。
+> 專案的實際運行規則、最新檔案結構與使用方法，已演進並統一記錄於核心檔案 [`InfoGold.md`](file:///D:/MyProject/InfoGold/InfoGold.md) 與說明文件 [`README.md`](file:///D:/MyProject/InfoGold/README.md) 中。
 
 ---
 

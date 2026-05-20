@@ -1,10 +1,14 @@
 # InfoGold - 產出檔案資料夾 (output/)
 
-本資料夾用於存放 InfoGold 執行整理後自動產生的三份決策套件檔案。
+本資料夾用於存放 InfoGold 執行整理後自動產生的獨立決策支援套件資料夾。
 
-### 📁 自動生成列表
-1. `01_raw_aligned.md` - 乾淨對齊的逐字稿
-2. `02_structured.md` - 結構化重點摘要與待辦行動表格
-3. `03_strategy.md` - 自適應戰略分析報告與 Roadmap
+### 📁 自動生成結構
+* `YYYYMMDD_[檔案主題]/`
+  * `README.md` - 導覽門戶（各份報告的核心亮點摘要與索引）
+  * `00_source_[原始檔名].txt` - 原始封存的輸入文字檔
+  * `01_cleaned_text.md` - 乾淨整理且保留發言術語的文本
+  * `02_structured_summary.md` - 結構化重點與行動方針表格 (臺灣在地化)
+  * `03_strategy_roadmap.md` - 自適應分析與 90 天執行路徑 (臺灣在地化)
+  * `metadata.json` - 執行狀態中繼資料
 
-*注意：本資料夾內的所有產出文件皆已設定 gitignore 排除，不會上傳到 Git，保障隱私安全。*
+*注意：本資料夾內的所有子資料夾與產出文件皆已設定 gitignore 排除，絕對不會被 commit 或上傳到遠端 GitHub，保障您的隱私與商業機密安全。*
