@@ -54,7 +54,7 @@ AI 會在讀取文本後，智慧評估內容的複雜度與主題，**自動拼
 請閱讀 @InfoGold.md
 ```
 *(AI 將會自動偵測並讀取 `test/` 資料夾下的文字檔，無需每次手動輸入長檔名)*
-4. AI 將自動在資料夾中生成 `output/` 資料夾與三份整理後的報告。
+4. AI 將自動在 `output/` 目錄下建立以「執行日期_文本主題」命名的專屬資料夾（例如 `output/20260520_施主任討論意見/`），並產出三份精煉報告，確保多次使用時不會互相覆蓋。
 
 ### 方式三：安裝為全域指令
 如果您經常需要使用此功能，可以將 [`InfoGold.md`](file:///D:/MyProject/InfoGold/InfoGold.md) 中的規則內容複製，貼入您的 AI 助理全域自訂指令中，即可隨時在命令列直接呼叫：
@@ -77,9 +77,11 @@ InfoGold/
 ├── README.md               # 本說明文件
 └── output/                 # 執行後自動產出的決策套件 (已設定隱私安全 gitignore)
     ├── .gitkeep            # 資料夾說明檔
-    ├── 01_cleaned_text.md  # [產出一] 精煉清理後段落清晰的文本 / 乾淨對齊逐字稿
-    ├── 02_structured_summary.md # [產出二] 結構化重點、爭議與行動矩陣表格
-    └── 03_strategy_roadmap.md # [產出三] 自適應分析報告與 30-60-90 天落地路徑
+    └── YYYYMMDD_[主題]/    # 每次執行產生的獨立決策支援套件資料夾
+        ├── metadata.json   # 本次執行日誌與狀態中繼資料
+        ├── 01_cleaned_text.md  # [產出一] 精煉清理且保留原文語彙的完整文本
+        ├── 02_structured_summary.md # [產出二] 結構化重點與行動矩陣 (臺灣在地化)
+        └── 03_strategy_roadmap.md # [產出三] 自適應分析與 30-60-90 天落地路徑 (臺灣在地化)
 ```
 
 ---
@@ -103,12 +105,12 @@ Transform raw transcript text into three structured deliverables in one shot:
 2. Paste your raw transcript at the bottom and submit.
 
 ### Mode 2: Local AI CLI
-1. Put your transcript file inside the `test/` folder.
+1. Put your raw text/transcript file inside the `test/` folder.
 2. Run the following command in your terminal:
 ```text
 Please read @InfoGold.md
 ```
-*(The AI will automatically locate the transcript in the `test/` folder and generate output files in `output/`)*
+*(The AI will automatically locate the input text in the `test/` folder and generate output files inside a unique `output/YYYYMMDD_[Topic]/` folder to prevent overwriting previous runs)*
 
 ### Mode 3: Global Custom Command
 Save the rules from `InfoGold.md` globally in your assistant's settings and run:
