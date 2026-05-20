@@ -89,6 +89,7 @@ InfoGold/
     └── YYYYMMDD_[主題]/    # 每次執行產生的獨立決策支援套件資料夾
         ├── README.md       # [導覽門戶] 各份報告的核心亮點摘要與連結
         ├── metadata.json   # 本次執行日誌與狀態中繼資料
+        ├── 00_source_[原始檔名].txt  # [封存原始檔] 從 test/ 自動移動至此備份，保持 test/ 乾淨
         ├── 01_cleaned_text.md  # [產出一] 精煉清理且保留原文語彙的完整文本
         ├── 02_structured_summary.md # [產出二] 結構化重點與行動矩陣 (臺灣在地化)
         └── 03_strategy_roadmap.md # [產出三] 自適應分析與 30-60-90 天落地路徑 (臺灣在地化)
@@ -123,7 +124,7 @@ Instead of generating content from scratch, InfoGold serves as your "Refining As
 ```text
 Please read @InfoGold.md
 ```
-*(The AI will automatically locate the input text in the `test/` folder and generate output files inside a unique `output/YYYYMMDD_[Topic]/` folder to prevent overwriting previous runs)*
+*(The AI will automatically locate the input text in the `test/` folder, generate output files inside a unique `output/YYYYMMDD_[Topic]/` folder, and move the original file to that folder to keep `test/` clean for future runs)*
 
 ### Mode 3: Global Custom Command
 Save the rules from `InfoGold.md` globally in your assistant's settings and run:
