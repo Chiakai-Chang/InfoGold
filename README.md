@@ -19,22 +19,23 @@
 
 ---
 
-## 🛣️ 雙軌執行路徑：免安裝 vs. 整合型 Skill
+## 🛣️ 三軌執行路徑 (Three Execution Paths)
 
-為滿足不同使用者的習慣，InfoGold 提供兩種最輕量化的使用方式：
+InfoGold 提供以下三種靈活的調用方式，您可以根據您的工作流程自由選擇：
 
-### 🔹 模式 A：給 Coding Agent 的安裝型憲法 (`skill.md`)
-* **適用對象**：習慣使用終端機 CLI 工具（如 Claude Code, Gemini CLI）或 AI 編輯器（如 Cursor, Windsurf）的技術人員。
-* **運作方式**：Agent 讀取 `skill.md` 後，會在背景全自動跑完四階段，並直接在您的目錄中生成結構化的報告檔案。
-* **如何執行**：
-  在對話框中提及 `skill.md` 與您的譯文檔案：
-  > `"請閱讀 @skill.md，並協助整理 @my_transcript.txt"`
+### 🔹 路徑 A：安裝為系統級自訂指令 (Installed Agent Skill)
+如果您使用的是支援「自訂指令（Custom Instructions）」或「全域配置」的 Coding Agent（例如 Claude Code 的全域設定，或是自訂的本地 CLI Alias），您可以直接將 [`RefineryConstitution.md`](file:///D:/MyProject/InfoGold/RefineryConstitution.md) 的內容貼入您的 Agent 全域系統提示詞中，將其安裝為全域 Skill。
+* **呼叫方式**：直接用自訂指令呼叫，無需在專案中附帶任何 md 規則檔。例如：
+  > `refinery @my_transcript.txt`
 
-### 🔹 模式 B：給網頁版 LLM 的免安裝複製範本 (`RefineryPrompt.md`)
-* **適用對象**：偏好使用網頁版對話介面（如 Claude.ai、ChatGPT Web、Gemini 網頁版）、不想安裝任何環境的商務使用者。
-* **運作方式**：打開 [`RefineryPrompt.md`](file:///D:/MyProject/InfoGold/RefineryPrompt.md)，複製其內部的全部 Prompt，貼入對話框並於下方貼上您的逐字稿譯文。
-* **如何執行**：
-  直接在對話視窗貼上並送出，AI 將一氣呵成在對話框中印出所有清理好的內容與戰略報告。
+### 🔹 路徑 B：專案級文件調用 (Workspace Document-Based Constitution)
+如果您不想安裝全域設定，只希望在特定專案資料夾內以文件引導 Agent 執行。
+* **使用方式**：將 [`RefineryConstitution.md`](file:///D:/MyProject/InfoGold/RefineryConstitution.md) 放入您的專案資料夾，並在 CLI 終端機或 AI 編輯器（如 Cursor、Windsurf）對話框中輸入：
+  > `"請閱讀 @RefineryConstitution.md，然後協助整理 @my_transcript.txt"`
+
+### 🔹 路徑 C：網頁版免安裝貼入 (Web Copy-Paste Prompt Template)
+如果您使用的是沒有讀寫檔案功能、純網頁版的 Chat UI（如 Claude.ai、ChatGPT、Gemini 網頁版）。
+* **使用方式**：打開 [`RefineryPrompt.md`](file:///D:/MyProject/InfoGold/RefineryPrompt.md)，複製其內部的全部 Prompt，貼入對話框並於下方附上您的 ASR 譯文。AI 將直接在對話框中印出所有清理好的內容與戰略報告。
 
 ---
 
@@ -42,15 +43,15 @@
 
 ```text
 InfoGold/
-├── skill.md               # 模式 A：專門給 Coding Agent 讀取的安裝型憲法
-├── RefineryPrompt.md      # 模式 B：專門給網頁版 LLM 複製貼上的免安裝 Prompt 範本
-├── Draft.md               # 原始專案實作規格書 (藍圖)
-├── asr_input_example.txt  # 內建的「資料庫事故檢討會」原始譯文範例
-├── README.md              # 本說明文件 (中文為主，英文為輔)
-└── output/                # 執行後自動生成的精煉產出
-    ├── 01_raw_aligned.md  # 階段 1：經清理、修正錯字並標記講者職稱的乾淨逐字稿 (臺灣繁中)
-    ├── 02_structured.md   # 階段 2：高易讀性的摘要、會議議題矩陣與妥協歷程 (雙語對照)
-    └── 03_strategy.md     # 階段 3：智慧自適應的戰略分析報告與 30-60-90 天落地路徑 (雙語對照)
+├── RefineryConstitution.md # 路徑 B：專案級文件調用的執行憲法
+├── RefineryPrompt.md       # 路徑 C：網頁版 LLM 複製貼上的免安裝 Prompt 範本
+├── Draft.md                # 原始專案實作規格書 (藍圖)
+├── asr_input_example.txt   # 內建的「資料庫事故檢討會」原始譯文範例
+├── README.md               # 本說明文件 (中文為主，英文為輔)
+└── output/                 # 執行後自動生成的精煉產出
+    ├── 01_raw_aligned.md   # 階段 1：乾淨對齊的逐字稿 (臺灣繁中)
+    ├── 02_structured.md    # 階段 2：結構化會議重點摘要與議題行動表格 (雙語對照)
+    └── 03_strategy.md      # 階段 3：自適應選擇的戰略分析報告與 90 天落地路徑 (雙語對照)
 ```
 
 ---
@@ -81,19 +82,15 @@ AI 將在讀取譯文後自動路由至最適合的框架：
 * **Security & Sandboxing**: Isolates transcript strings in `<ASR_LITERAL_DATA>` blocks to prevent prompt injections.
 * **Zero-Hallucination References**: Enforces strict line number citations (`[Ref: Line X]`) back to the clean transcript for all strategic points.
 
-## 🚀 Usage Modes
+## 🚀 Execution Paths
 
-### Path A: Operational Constitution (`skill.md`)
-* *Target Users*: Developers using CLI Agents (Claude Code, Gemini CLI) or Editor Chats (Cursor, Windsurf).
-* *Command*: `@skill.md Please process @my_transcript.txt`
-* *Result*: Automatically creates and saves output files in `output/` directory.
+### Path A: Installed Agent Skill
+* *Target*: Register the rules globally in your Coding Agent's system configurations.
+* *Command*: Call by your configured alias name directly: `refinery @my_transcript.txt`
 
-### Path B: Copy-Paste Prompt (`RefineryPrompt.md`)
-* *Target Users*: Business users utilizing Web UIs (Claude Web, ChatGPT).
-* *Usage*: Copy all content inside `RefineryPrompt.md`, paste into chat window, append your ASR transcript, and send.
-* *Result*: Formatted reports are printed directly inside the chat panel for easy copying.
+### Path B: Workspace Document-Based Constitution (`RefineryConstitution.md`)
+* *Target*: Keep the constitution file locally in the workspace folder.
+* *Command*: `"Please read @RefineryConstitution.md, then help organize @my_transcript.txt"`
 
----
-
-## 📄 License & Contribution
-Feel free to fork this repository, submit issues, or pull requests. InfoGold is open-source and licensed under the MIT License.
+### Path C: Copy-Paste Prompt Template (`RefineryPrompt.md`)
+* *Target*: Copy prompt text into standard Web UIs (Claude Web, ChatGPT Web) along with your transcript.
